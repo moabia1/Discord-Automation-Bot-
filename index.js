@@ -14,8 +14,10 @@ client.once("ready", () => {
 })
 
 client.on("messageCreate", (message) => { 
-  console.log("message by you-",message)
-  message.reply("Hello! This response from bot")
+  const isBot = message.author.bot;
+  if (isBot) return
+  
+  message.reply("Hello From Bot")
 })
 
 client.login(process.env.DISCORD_BOT_TOKEN)
