@@ -1,6 +1,8 @@
 require("dotenv").config()
 const { Client, GatewayIntentBits, AttachmentBuilder } = require("discord.js")
 const {GoogleGenAI} = require("@google/genai")
+
+
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 async function generateContent(prompt) {
@@ -9,9 +11,11 @@ async function generateContent(prompt) {
     contents: prompt,
     config: {
       systemInstruction: `
-        "always take answer short never take answer upto 3500 words and formatting in good structure."
-      `
-    }
+        Provide a short, informative answer...
+        Summarize the key points in a structured format...
+        Give me a brief, well-structured response on...
+      `,
+    },
   });
 
   return response.text
